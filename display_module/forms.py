@@ -32,7 +32,7 @@ class UserRegisterForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         try:
-            UserProfile.objects.get(username=username)
+            User.objects.get(username=username)
         except Exception as e:
             print e
             return username
@@ -42,7 +42,7 @@ class UserRegisterForm(forms.Form):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         try:
-            user = UserProfile.objects.get(email=email)
+            user = User.objects.get(email=email)
             username = user.username
         except Exception as e:
             print e

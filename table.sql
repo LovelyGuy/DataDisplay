@@ -1,5 +1,7 @@
 CREATE DATABASE data_analysis;
 
+# Tips: 在生成这些表之前, 可以先更新
+
 # ######################################################################
 # 用户列表
 CREATE TABLE `user_profile` (
