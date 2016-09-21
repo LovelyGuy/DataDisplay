@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-
-import socket
-
 # 本地测试环境配置
 
 from default import *
+import socket
 
 DEBUG = True
 

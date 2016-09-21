@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth import login
 from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -17,7 +18,7 @@ class UserRegisterView(FormView):
         return super(UserRegisterView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        create_status, user = form.save()
+        create_status, user_profile = form.save()
         if create_status is False:
             context = {
                 'status': 'error',
@@ -26,7 +27,7 @@ class UserRegisterView(FormView):
         else:
             context = {
                 'status': 'success',
-                'msg': u'注册成功!用户id是 {id}!'.format(id=user.id)
+                'msg': u'注册成功!用户编号是 {id}!'.format(id=user_profile.logic_id)
             }
         return JsonResponse(context)
 
@@ -42,3 +43,21 @@ class UserRegisterView(FormView):
 class UserLoginView(FormView):
     http_method_names = ['post']
     form_class = UserLoginForm
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserLoginView, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        user = form.get_user()
+        login(self.request, user=user)
+        return JsonResponse({
+            'msg': u'登陆成功'
+        })
+
+    def form_invalid(self, form):
+        context = {
+            'status': 'error',
+            'msg': form.errors.popitem()[-1][0]
+        }
+        return JsonResponse(context)
