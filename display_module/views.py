@@ -3,7 +3,7 @@ from django.contrib.auth import login
 from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 
 from forms import UserRegisterForm, UserLoginForm
 
@@ -61,3 +61,12 @@ class UserLoginView(FormView):
             'msg': form.errors.popitem()[-1][0]
         }
         return JsonResponse(context)
+
+
+# 前端测试demo
+class TemplateTestView(TemplateView):
+    http_method_names = ['get']
+    template_name = "500.html"
+
+    def get_context_data(self, **kwargs):
+        return {}

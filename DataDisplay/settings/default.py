@@ -12,14 +12,36 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+#######################################################
+#                   Path settings
+#######################################################
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_URL = '/static/'
+
+# Project directory.
+PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+
+# Name of the directory for the project.
+PROJECT_DIR_NAME = PROJECT_DIR.split(os.sep)[-1]
+
+# Static files directory.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
+)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
+#######################################################
+#                   Secret key settings
+#######################################################
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+sp0sel!g^3j)pp2bc)5x-b2rhx4$2d987ur9l%9-t*56ylj7n'
 
@@ -28,6 +50,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#######################################################
+#               Installed APP settings
+#######################################################
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,10 +62,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'display_module',
     'display_module.apps.DisplayModuleConfig',
 ]
 
+#######################################################
+#               Middleware settings
+#######################################################
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,12 +79,22 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+#######################################################
+#               Root URL settings
+#######################################################
 ROOT_URLCONF = 'DataDisplay.urls'
 
+#######################################################
+#               Templates settings
+#######################################################
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(PROJECT_DIR, 'templates'),
+            os.path.join(PROJECT_DIR_NAME, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +102,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # self configure
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.media',
+                'django.core.context_processors.static',
             ],
         },
     },
@@ -109,11 +150,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # ###################################################################
 #                   REST_FRAMEWORK 配置

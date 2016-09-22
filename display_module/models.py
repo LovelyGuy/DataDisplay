@@ -19,7 +19,7 @@ class UserProfile(models.Model):
     objects = UserManager()
     USERNAME_FIELD = 'username'
 
-    class Meta(AbstractUser.Meta):
+    class Meta:
         db_table = 'user_profile'
         verbose_name = u'用户信息表'
 
