@@ -66,7 +66,7 @@ class UserLoginView(FormView):
 # 前端测试demo
 class TemplateTestView(TemplateView):
     http_method_names = ['get']
-    template_name = "500.html"
+    template_name = "404.html"
 
     def get_context_data(self, **kwargs):
         return {}
