@@ -4,9 +4,15 @@
 from default import *
 import socket
 
+ALLOWED_HOSTS = ['*']
+
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# ###################################################################
+#                         STATIC_ROOT 配置
+# ###################################################################
+if DEBUG is False:
+    STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, STATIC_URL.strip('/')))
 
 # ###################################################################
 #                          DATABASES 配置

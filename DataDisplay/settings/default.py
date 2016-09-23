@@ -27,16 +27,13 @@ STATIC_URL = '/static/'
 # Project directory.
 PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
 
-# static absolute directory
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, STATIC_URL.strip('/')))
-
 # Name of the directory for the project.
 PROJECT_DIR_NAME = PROJECT_DIR.split(os.sep)[-1]
 
 # Static files directory.
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
-    # os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
 )
 
 # Quick-start development settings - unsuitable for production

@@ -60,12 +60,3 @@ class UserLoginView(FormView):
             'msg': form.errors.popitem()[-1][0]
         }
         return JsonResponse(context)
-
-
-# 前端测试demo
-class TemplateTestView(TemplateView):
-    http_method_names = ['get']
-    template_name = "500.html"
-
-    def get_context_data(self, **kwargs):
-        return {}

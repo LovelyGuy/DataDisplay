@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
 from django.views.static import serve
 
 urlpatterns = [
@@ -28,3 +29,7 @@ if settings.DEBUG is False:
     urlpatterns += [
         url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
     ]
+
+# Overwrite default handler.
+handler500 = TemplateView.as_view(template_name='500.html')
+handler404 = TemplateView.as_view(template_name='404.html')
