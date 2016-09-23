@@ -37,7 +37,7 @@
  => 2) if you want to display the points too, you have to plot them as 2nd data series over the lines
 
  && 3) consecutive x data points are not allowed to have the same value
-
+ki
  This is version 0.5 of curvedLines so it will probably not work in every case. However
  the basic form of use descirbed next works (:
 

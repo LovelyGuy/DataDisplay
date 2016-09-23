@@ -26,5 +26,5 @@ urlpatterns = [
 
 if settings.DEBUG is False:
     urlpatterns += [
-        url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT_URL}),
+        url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
     ]

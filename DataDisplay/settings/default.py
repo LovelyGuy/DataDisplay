@@ -24,11 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
 
-# static absolute directory
-STATIC_ROOT_URL = '/home/hp/self_proj/DataDisplay/static'
-
 # Project directory.
 PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+
+# static absolute directory
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, STATIC_URL.strip('/')))
 
 # Name of the directory for the project.
 PROJECT_DIR_NAME = PROJECT_DIR.split(os.sep)[-1]
@@ -36,14 +36,14 @@ PROJECT_DIR_NAME = PROJECT_DIR.split(os.sep)[-1]
 # Static files directory.
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
-    os.path.join(BASE_DIR, "static"),
+    # os.path.join(BASE_DIR, "static"),
 )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 #######################################################
-#                   Secret key settings
+#                Secret key settings
 #######################################################
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+sp0sel!g^3j)pp2bc)5x-b2rhx4$2d987ur9l%9-t*56ylj7n'

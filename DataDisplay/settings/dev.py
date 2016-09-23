@@ -4,7 +4,7 @@
 from default import *
 import socket
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

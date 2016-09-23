@@ -2,7 +2,7 @@
 
 from django.conf.urls import url
 
-from display_module import views
+from display_module.views import views
 
 urlpatterns = [
     url(r'^user/register/$', views.UserRegisterView.as_view(), name='user_register'),
